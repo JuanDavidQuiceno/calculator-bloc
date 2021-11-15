@@ -1,11 +1,14 @@
-import 'package:calculadora/widgets/results_label.dart';
 import 'package:flutter/material.dart';
+import 'package:calculadora/bloc/calculator/calculator_bloc.dart';
+import 'package:calculadora/widgets/results_label.dart';
 import 'package:calculadora/widgets/calc_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CalculatorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final blocCalculator = BlocProvider.of<CalculatorBloc>(context);
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -23,22 +26,22 @@ class CalculatorScreen extends StatelessWidget {
                   CalculatorButton( 
                     text: 'AC',
                     bgColor: Color(0xffA5A5A5 ),
-                    onPressed: () => print('AC'),
+                    onPressed: () => blocCalculator.add(ResetAC()),
                   ),
                   CalculatorButton( 
                     text: '+/-',
                     bgColor: Color(0xffA5A5A5 ),
-                    onPressed: () => print('+/-'),
+                    onPressed: () => blocCalculator.add(ChangeNegativePositive()),
                   ),
                   CalculatorButton( 
                     text: 'del',
                     bgColor: Color(0xffA5A5A5 ),
-                    onPressed: () => print('del'),
+                    onPressed: () => blocCalculator.add(DeleteLastEntry()),
                   ),
                   CalculatorButton( 
                     text: '/',
                     bgColor: Color(0xffF0A23B ),
-                    onPressed: () => print('/'),
+                    onPressed: () => blocCalculator.add(OperationEntry('/')),
                   ),
                 ],
               ),
@@ -48,20 +51,20 @@ class CalculatorScreen extends StatelessWidget {
                 children: [
                   CalculatorButton( 
                     text: '7',
-                    onPressed: () => print('7'),
+                    onPressed: () => blocCalculator.add(AddNumber('7')),
                   ),
                   CalculatorButton( 
                     text: '8',
-                    onPressed: () => print('8'),
+                    onPressed: () =>blocCalculator.add(AddNumber('8')),
                   ),
                   CalculatorButton( 
                     text: '9',
-                    onPressed: () => print('9'),
+                    onPressed: () => blocCalculator.add(AddNumber('9')),
                   ),
                   CalculatorButton( 
                     text: 'X',
                     bgColor: Color(0xffF0A23B ),
-                    onPressed: () => print('X'),
+                    onPressed: () => blocCalculator.add(OperationEntry('X')),
                   ),
                 ],
               ),
@@ -71,20 +74,20 @@ class CalculatorScreen extends StatelessWidget {
                 children: [
                   CalculatorButton( 
                     text: '4', 
-                    onPressed: () => print('4'),
+                    onPressed: () =>blocCalculator.add(AddNumber('4')),
                   ),
                   CalculatorButton( 
                     text: '5', 
-                    onPressed: () => print('5'),
+                    onPressed: () => blocCalculator.add(AddNumber('5')),
                   ),
                   CalculatorButton( 
                     text: '6', 
-                    onPressed: () => print('6'),
+                    onPressed: () => blocCalculator.add(AddNumber('6')),
                   ),
                   CalculatorButton( 
                     text: '-',
                     bgColor: Color(0xffF0A23B ),
-                    onPressed: () => print('-'),
+                    onPressed: () => blocCalculator.add(OperationEntry('-')),
                   ),
                 ],
               ),
@@ -94,20 +97,20 @@ class CalculatorScreen extends StatelessWidget {
                 children: [
                   CalculatorButton( 
                     text: '1', 
-                    onPressed: () => print('1'),
+                    onPressed: () => blocCalculator.add(AddNumber('1')),
                   ),
                   CalculatorButton( 
                     text: '2', 
-                    onPressed: () => print('2'),
+                    onPressed: () => blocCalculator.add(AddNumber('2')),
                   ),
                   CalculatorButton( 
                     text: '3', 
-                    onPressed: () => print('3'),
+                    onPressed: () => blocCalculator.add(AddNumber('3')),
                   ),
                   CalculatorButton(
                     text: '+',  
                     bgColor: Color(0xffF0A23B ),
-                    onPressed: () => print('+'),
+                    onPressed: () => blocCalculator.add(OperationEntry('+')),
                   ),
                 ],
               ),
@@ -118,16 +121,16 @@ class CalculatorScreen extends StatelessWidget {
                   CalculatorButton( 
                     text: '0', 
                     big: true,
-                    onPressed: () => print('0'),
+                    onPressed: () => blocCalculator.add(AddNumber('0')),
                   ),
                   CalculatorButton( 
                     text: '.', 
-                    onPressed: () => print('.'),
+                    onPressed: () =>  blocCalculator.add(AddNumber('.')),
                   ),
                   CalculatorButton( 
                     text: '=',
                     bgColor: Color(0xffF0A23B ),
-                    onPressed: () => print('='),
+                    onPressed: () =>blocCalculator.add(CalculateResult()),
                   ),
                 ],
               ),
