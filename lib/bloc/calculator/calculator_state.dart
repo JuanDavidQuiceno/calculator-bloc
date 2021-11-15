@@ -17,4 +17,16 @@ class CalculatorState {
     this.secondNumber = '30',
     this.operation = '+'
   });
+
+  CalculatorState copyWhit({
+    String? mathResult,
+    String? firtsNumber,
+    String? secondNumber,
+    String? operation,
+  })=> CalculatorState(
+    mathResult: mathResult??this.mathResult,
+    firtsNumber: firtsNumber??this.firtsNumber,
+    secondNumber: secondNumber??this.secondNumber,
+    operation: operation??this.operation
+  );
 }
